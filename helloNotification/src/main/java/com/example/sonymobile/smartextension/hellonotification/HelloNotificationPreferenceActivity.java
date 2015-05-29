@@ -87,6 +87,9 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = new Intent(this.getApplicationContext(), NewsService.class);
+        i.putExtra("KEY1", "Value to be used by the service");
+        this.startService(i);
 
         // Load the preferences from an XML resource.
         addPreferencesFromResource(R.xml.preferences);

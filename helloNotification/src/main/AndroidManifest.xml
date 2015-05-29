@@ -69,6 +69,10 @@
                 <action android:name="com.sonyericsson.extras.aef.control.SWIPE_EVENT" />
             </intent-filter>
         </receiver>
+        <service
+            android:name="NewsService"
+            android:label="@string/news_service">
+        </service>
     </application>
 
 </manifest>

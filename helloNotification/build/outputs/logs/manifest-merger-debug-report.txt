@@ -157,3 +157,9 @@ action#com.sonyericsson.extras.aef.control.SWIPE_EVENT
 ADDED from AndroidManifest.xml:69:17
 	android:name
 		ADDED from AndroidManifest.xml:69:25
+service#com.example.sonymobile.smartextension.hellonotification.NewsService
+ADDED from AndroidManifest.xml:72:9
+	android:label
+		ADDED from AndroidManifest.xml:74:13
+	android:name
+		ADDED from AndroidManifest.xml:73:13
