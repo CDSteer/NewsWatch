@@ -23,6 +23,14 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ViewNews"
+            android:label="@string/ViewNews"
+            android:parentActivityName=".ViewNews" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelloNotificationPreferenceActivity" />
+        </activity>
 
         <service android:name="com.example.sonymobile.smartextension.hellonotification.HelloNotificationExtensionService" />
         <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >

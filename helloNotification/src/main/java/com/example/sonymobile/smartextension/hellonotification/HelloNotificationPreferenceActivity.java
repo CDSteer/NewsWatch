@@ -37,6 +37,7 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -71,20 +72,16 @@ import java.util.Random;
  * the user to clear all notifications associated with this extension.
  */
 public class HelloNotificationPreferenceActivity extends PreferenceActivity {
+    final String KEYWORDS = "London";
+    final String PRODUCT = "NewsWeb";
+    final String CONTENT_FORMAT = "TextualFormat";
+    final String RECENT_FIRST = "yes";
+    final String URL = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + KEYWORDS + "&product[]="
+            + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
+            RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
 
     private static final int DIALOG_READ_ME = 1;
-
     private static final int DIALOG_CLEAR = 2;
-
-    /** Notification names. */
-    private static final String[] NAMES = new String[] {
-            "BBC News"
-    };
-
-    /** Notification messages. */
-    private static final String[] MESSAGE = new String[] {
-            "Have some News"
-    };
 
     @SuppressWarnings("deprecation")
     @Override
@@ -112,7 +109,8 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                addData();
+                String theNews = readNews();
+                parseNews(theNews);
                 return true;
             }
         });
@@ -127,6 +125,16 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
             }
         });
 
+        preference = findPreference(getString(R.string.preference__key_news));
+        preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Intent intent = new Intent(HelloNotificationPreferenceActivity.this, ViewNews.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
         // Remove preferences that are not supported by the accessory.
         if (!ExtensionUtils.supportsHistory(getIntent())) {
             preference = findPreference(getString(R.string.preference_key_clear));
@@ -137,7 +145,6 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
     @Override
     protected Dialog onCreateDialog(int id) {
         Dialog dialog = null;
-
         // Identify and show the appropriate dialogue on the phone.
         switch (id) {
             case DIALOG_READ_ME:
@@ -150,7 +157,6 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
                 Log.w(HelloNotificationExtensionService.LOG_TAG, "Not a valid dialogue id: " + id);
                 break;
         }
-
         return dialog;
     }
 
@@ -202,11 +208,9 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
      * Clears all notifications.
      */
     private class ClearEventsTask extends AsyncTask<Void, Void, Integer> {
-
         @Override
         protected void onPreExecute() {
         }
-
         @Override
         protected Integer doInBackground(Void... params) {
             int nbrDeleted = 0;
@@ -226,21 +230,7 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         }
     }
 
-    /**
-     * This method sets randomly generated data that will be connected to a
-     * notification.
-     */
-    private void addData() {
-        //Random rand = new Random();
-        //int index = rand.nextInt(5);
-        // WebServer Request URL
-        String serverURL = "http://androidexample.com/media/webservice/JsonReturn.php";
-        String theNews = readNews();
-        Log.d("JSON:", theNews);
-        String[] news = parse(theNews);
-        int index =0;
-        String name = NAMES[index];
-        String message = MESSAGE[index];
+    private void sendNews(String[] news){
         long time = System.currentTimeMillis();
         long sourceId = NotificationUtil.getSourceId(this,
                 HelloNotificationExtensionService.EXTENSION_SPECIFIC_ID);
@@ -260,22 +250,14 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         eventValues.put(Notification.EventColumns.PROFILE_IMAGE_URI, profileImage);
         eventValues.put(Notification.EventColumns.PUBLISHED_TIME, time);
         eventValues.put(Notification.EventColumns.SOURCE_ID, sourceId);
-
         NotificationUtil.addEvent(this, eventValues);
     }
 
     public String readNews() {
         StringBuilder builder = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
-        String line="";
-        String keywords = "London";
-        String product = "NewsWeb";
-        String content_format = "TextualFormat";
-        String recent_first = "yes";
-        //String url = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + keywords + "&product[]=" + product + "&content_format[]=" + content_format + "&recent_first=" + recent_first + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
-        String url = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=london&product[]=NewsWeb&content_format[]=TextualFormat&recent_first=yes&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
-        HttpGet httpGet = new HttpGet(url);
-        Log.v("Test:", "Hello");
+        String line = "";
+        HttpGet httpGet = new HttpGet(URL);
         try {
             HttpResponse response = client.execute(httpGet);
             StatusLine statusLine = response.getStatusLine();
@@ -284,7 +266,6 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
                 HttpEntity entity = response.getEntity();
                 InputStream content = entity.getContent();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-
                 while ((line = reader.readLine()) != null) {
                     builder.append(line);
                 }
@@ -296,25 +277,22 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return builder.toString();
     }
 
-    protected String[] parse(String result) {
+    private void parseNews(String result) {
         String[] news = new String[2];
         try {
             JSONObject jObj = new JSONObject(result);
             JSONArray jsonArray = jObj.getJSONArray("articles");
-            //for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject mJsonObject = jsonArray.getJSONObject(0);
-                Log.d("OutPut", mJsonObject.getString("title"));
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject mJsonObject = jsonArray.getJSONObject(i);
                 news[0] = mJsonObject.getString("title");
                 news[1] = mJsonObject.getString("description");
-            //}
+                sendNews(news);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return news;
     }
-
 }

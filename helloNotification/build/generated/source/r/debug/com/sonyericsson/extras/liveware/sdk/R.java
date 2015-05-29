@@ -54,7 +54,7 @@ public final class R {
 		public static final int years_digit4 = 0x7f090022;
 	}
 	public static final class string {
-		public static final int app_name = 0x7f080003;
+		public static final int app_name = 0x7f080004;
 	}
 	public static final class styleable {
 		public static final int[] TimeLayout = { 0x7f010000, 0x7f010001 };
