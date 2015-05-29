@@ -138,7 +138,6 @@ public class ViewNews extends Activity {
                 JSONObject mJsonObject = jsonArray.getJSONObject(i);
                 news[0] = mJsonObject.getString("title");
                 news[1] = mJsonObject.getString("description");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
