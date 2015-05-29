@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.LauncherActivity;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -30,6 +33,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cdsteer on 29/05/15.
@@ -97,9 +102,21 @@ public class ViewNews extends Activity {
         ListView listView = (ListView) findViewById(R.id.news_list);
 
         TextView textView = new TextView(this.getApplicationContext());
-        textView.setText("hello");
-
+        textView.setText(news[0]);
+        textView.setTextColor(Color.BLACK);
         listView.addHeaderView(textView);
+
+
+        ArrayList arrayList = new ArrayList<String>();
+        //arrayList.add(news[0]);
+
+        // Adapter: You need three parameters 'the context, id of the layout (it will be where the data is shown),
+        // and the array that contains the data
+        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.news_list_item, arrayList);
+
+        // Here, you set the data in your ListView
+        listView.setAdapter(adapter);
+
     }
 
     public String readNews() {
