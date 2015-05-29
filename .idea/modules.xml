@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HelloNotification.iml" filepath="$PROJECT_DIR$/HelloNotification.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloNotification/NewsWatch.iml" filepath="$PROJECT_DIR$/helloNotification/NewsWatch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/helloNotification/helloNotification.iml" filepath="$PROJECT_DIR$/helloNotification/helloNotification.iml" />
       <module fileurl="file://$PROJECT_DIR$/smartExtensionAPI/smartExtensionAPI.iml" filepath="$PROJECT_DIR$/smartExtensionAPI/smartExtensionAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/smartExtensionUtils/smartExtensionUtils.iml" filepath="$PROJECT_DIR$/smartExtensionUtils/smartExtensionUtils.iml" />
     </modules>

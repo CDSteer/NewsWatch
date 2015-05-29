@@ -274,7 +274,7 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         String recent_first = "yes";
         //String url = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + keywords + "&product[]=" + product + "&content_format[]=" + content_format + "&recent_first=" + recent_first + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
         String url = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=london&product[]=NewsWeb&content_format[]=TextualFormat&recent_first=yes&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
-        HttpGet httpGet = new HttpGet("http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=london&product[]=NewsWeb&content_format[]=TextualFormat&recent_first=yes&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7");
+        HttpGet httpGet = new HttpGet(url);
         Log.v("Test:", "Hello");
         try {
             HttpResponse response = client.execute(httpGet);
