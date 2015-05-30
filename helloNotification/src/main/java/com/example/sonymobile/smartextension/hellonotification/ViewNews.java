@@ -19,6 +19,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -43,7 +44,7 @@ import java.util.List;
  * Created by cdsteer on 29/05/15.
  */
 public class ViewNews extends Activity {
-    final String KEYWORDS = "London";
+    final String KEYWORDS = "Swansea";
     final String PRODUCT = "NewsWeb";
     final String CONTENT_FORMAT = "TextualFormat";
     final String RECENT_FIRST = "yes";
@@ -62,15 +63,14 @@ public class ViewNews extends Activity {
         Intent i = new Intent(this.getApplicationContext(), NewsService.class);
         i.putExtra("KEY1", "Value to be used by the service");
         this.startService(i);
+        Toast toast = Toast.makeText(getApplicationContext(), "Service Started", Toast.LENGTH_LONG);
+        toast.show();
         setContentView(R.layout.news_list);
         listView = (ListView) findViewById (R.id.news_list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text = "Clicked";
-                //text = (String) ;
-                text = (listView.getItemAtPosition(position)).toString();
-                Log.v("Headline:", text);
+                String text = (listView.getItemAtPosition(position)).toString();
                 savedNews.add(text);
             }
         });
