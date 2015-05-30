@@ -24,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Random;
 import java.util.logging.Handler;
 
 /**
@@ -38,6 +39,7 @@ public class NewsService extends Service {
     final String URL = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + KEYWORDS + "&product[]="
             + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
             RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
+    Random rand = new Random();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -48,8 +50,11 @@ public class NewsService extends Service {
     private void ping() {
         try {
             //Your code here or call a method
-            String theNews = readNews();
-            parseNews(theNews);
+            //String theNews = readNews();
+            //parseNews(theNews);
+            int x = rand.nextInt(ViewNews.savedNews.size()-1);
+            String[] fields = new String[] {"BBC News", ViewNews.savedNews.get(x)};
+            sendNews(fields);
         } catch (Exception e) {
             Log.e("Error", "In onStartCommand");
             e.printStackTrace();
@@ -124,12 +129,11 @@ public class NewsService extends Service {
         try {
             JSONObject jObj = new JSONObject(result);
             JSONArray jsonArray = jObj.getJSONArray("articles");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject mJsonObject = jsonArray.getJSONObject(i);
-                news[0] = mJsonObject.getString("title");
-                news[1] = mJsonObject.getString("description");
-                sendNews(news);
-            }
+            int x = rand.nextInt(jsonArray.length()-1);
+            JSONObject mJsonObject = jsonArray.getJSONObject(x);
+            news[0] = mJsonObject.getString("title");
+            news[1] = mJsonObject.getString("description");
+            sendNews(news);
         } catch (Exception e) {
             e.printStackTrace();
         }

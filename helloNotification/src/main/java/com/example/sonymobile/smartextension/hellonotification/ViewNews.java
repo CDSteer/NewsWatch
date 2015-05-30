@@ -2,6 +2,8 @@ package com.example.sonymobile.smartextension.hellonotification;
 
 import android.app.Activity;
 import android.app.LauncherActivity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Color;
@@ -34,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,32 +51,36 @@ public class ViewNews extends Activity {
             + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
             RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
 
-    Cursor cursor;
     protected ListAdapter adapter;
-    protected ListView memoList;
-    protected int[] listFields = new int[] {R.id.name, R.id.details};
-    protected String[] fields = new String[] {"_id","title", "description"};
+    public static ArrayList<String> savedNews = new ArrayList<String>();
+    ListView listView;
+    ArrayList<String> arrayList = new ArrayList();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = new Intent(this.getApplicationContext(), NewsService.class);
+        i.putExtra("KEY1", "Value to be used by the service");
+        this.startService(i);
         setContentView(R.layout.news_list);
-        //memoList = (ListView) findViewById (R.id.list);
-//        memoList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//        });
+        listView = (ListView) findViewById (R.id.news_list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String text = "Clicked";
+                //text = (String) ;
+                text = (listView.getItemAtPosition(position)).toString();
+                Log.v("Headline:", text);
+                savedNews.add(text);
+            }
+        });
         listMemos();
     }
-
-
 
     public void listMemos() {
         String news = readNews();
         addData(news);
-
+        populateList();
     }
 
     public void addData(String json){
@@ -91,32 +98,20 @@ public class ViewNews extends Activity {
                 jo = jsonArray.getJSONObject(i);
                 news[0] = jo.getString("title");
                 news[1] = jo.getString("description");
-                addList(news);
+                addToList(news);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void addList(String[] news) {
-        ListView listView = (ListView) findViewById(R.id.news_list);
+    private void addToList(String[] news) {
+        arrayList.add(news[0]);
+    }
 
-        TextView textView = new TextView(this.getApplicationContext());
-        textView.setText(news[0]);
-        textView.setTextColor(Color.BLACK);
-        listView.addHeaderView(textView);
-
-
-        ArrayList arrayList = new ArrayList<String>();
-        //arrayList.add(news[0]);
-
-        // Adapter: You need three parameters 'the context, id of the layout (it will be where the data is shown),
-        // and the array that contains the data
-        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.news_list_item, arrayList);
-
-        // Here, you set the data in your ListView
+    private void populateList(){
+        adapter = new ArrayAdapter<String>(this, R.layout.news_list_item, arrayList);
         listView.setAdapter(adapter);
-
     }
 
     public String readNews() {
@@ -146,20 +141,6 @@ public class ViewNews extends Activity {
         return builder.toString();
     }
 
-    private void parseNews(String result) {
-        String[] news = new String[2];
-        try {
-            JSONObject jObj = new JSONObject(result);
-            JSONArray jsonArray = jObj.getJSONArray("articles");
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject mJsonObject = jsonArray.getJSONObject(i);
-                news[0] = mJsonObject.getString("title");
-                news[1] = mJsonObject.getString("description");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Override
     public void onResume() {
         super.onResume();
