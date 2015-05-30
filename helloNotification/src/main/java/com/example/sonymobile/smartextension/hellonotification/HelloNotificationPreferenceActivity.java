@@ -89,6 +89,7 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
 
         // Load the preferences from an XML resource.
         addPreferencesFromResource(R.xml.preferences);
+        
         StrictMode.ThreadPolicy policy = new StrictMode.
                 ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -216,7 +217,6 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
             nbrDeleted = NotificationUtil.deleteAllEvents(HelloNotificationPreferenceActivity.this);
             return nbrDeleted;
         }
-
         @Override
         protected void onPostExecute(Integer id) {
             if (id != NotificationUtil.INVALID_ID) {

@@ -55,7 +55,7 @@ public class ViewNews extends Activity {
     protected ListAdapter adapter;
     public static ArrayList<String> savedNews = new ArrayList<String>();
     ListView listView;
-    ArrayList<String> arrayList = new ArrayList();
+    ArrayList<Article> articles = new ArrayList();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,9 @@ public class ViewNews extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String text = (listView.getItemAtPosition(position)).toString();
+                view.setBackgroundColor(Color.parseColor("#00b200"));
+                TextView textView = (TextView) view.findViewById(R.id.name);
+                String text = (String) textView.getText();
                 savedNews.add(text);
             }
         });
@@ -106,11 +108,11 @@ public class ViewNews extends Activity {
     }
 
     private void addToList(String[] news) {
-        arrayList.add(news[0]);
+        articles.add(new Article(news[0], news[1]));
     }
 
     private void populateList(){
-        adapter = new ArrayAdapter<String>(this, R.layout.news_list_item, arrayList);
+        adapter = new MyArrayAdapter(this, articles);
         listView.setAdapter(adapter);
     }
 

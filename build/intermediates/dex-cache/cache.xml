@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="925b5b2651b6178690bd9beedf38a0b1b99ff13e">
-        <dex dex="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/pre-dexed/debug/classes-cfd85d7c17b65a195dba531f0ee435043f1b315f.jar" />
-    </item>
-    <item
         jar="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionAPI/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="8678945c9174d2fb445743c7dbfe0b8878cf601c">
+        sha1="678f465f1cb9146c4823597ba1d32ee3ee075286">
         <dex dex="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/pre-dexed/debug/classes-ea821f68e6cbbfeaf0c2885fd9b79dc812a89b5b.jar" />
+    </item>
+    <item
+        jar="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="14a17309846eaaeb72a2c451a7e9fc29bbb0dfb9">
+        <dex dex="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/pre-dexed/debug/classes-cfd85d7c17b65a195dba531f0ee435043f1b315f.jar" />
     </item>
 
 </items>

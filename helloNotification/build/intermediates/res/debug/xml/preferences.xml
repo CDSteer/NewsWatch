@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-
     <!-- Read me -->
     <Preference
         android:key="@string/preference_key_read_me"
@@ -18,7 +17,5 @@
 
     <Preference
         android:key="@string/preference__key_news"
-        android:title="@string/preference_option_news" />
-
-
+        android:title="Get Scoops" />
 </PreferenceScreen><!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/xml/preferences.xml -->
