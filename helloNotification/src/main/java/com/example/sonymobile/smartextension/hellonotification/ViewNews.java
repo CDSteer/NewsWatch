@@ -44,27 +44,16 @@ import java.util.List;
  * Created by cdsteer on 29/05/15.
  */
 public class ViewNews extends Activity {
-    final String KEYWORDS = "Swansea";
-    final String PRODUCT = "NewsWeb";
-    final String CONTENT_FORMAT = "TextualFormat";
-    final String RECENT_FIRST = "yes";
-    final String URL = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + KEYWORDS + "&product[]="
-            + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
-            RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
 
     protected ListAdapter adapter;
     public static ArrayList<String> savedNews = new ArrayList<String>();
     ListView listView;
     ArrayList<Article> articles = new ArrayList();
+    //String newsJson = NewsReadService.newsJson;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent i = new Intent(this.getApplicationContext(), NewsService.class);
-        i.putExtra("KEY1", "Value to be used by the service");
-        this.startService(i);
-        Toast toast = Toast.makeText(getApplicationContext(), "Service Started", Toast.LENGTH_LONG);
-        toast.show();
         setContentView(R.layout.news_list);
         listView = (ListView) findViewById (R.id.news_list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,8 +69,7 @@ public class ViewNews extends Activity {
     }
 
     public void listMemos() {
-        String news = readNews();
-        addData(news);
+        addData(NewsReadService.newsJson);
         populateList();
     }
 
@@ -95,9 +83,8 @@ public class ViewNews extends Activity {
             e.printStackTrace();
         }
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jo = null;
             try {
-                jo = jsonArray.getJSONObject(i);
+                JSONObject jo = jsonArray.getJSONObject(i);
                 news[0] = jo.getString("title");
                 news[1] = jo.getString("description");
                 addToList(news);
@@ -116,37 +103,9 @@ public class ViewNews extends Activity {
         listView.setAdapter(adapter);
     }
 
-    public String readNews() {
-        StringBuilder builder = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        String line = "";
-        HttpGet httpGet = new HttpGet(URL);
-        try {
-            HttpResponse response = client.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) {
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                while ((line = reader.readLine()) != null) {
-                    builder.append(line);
-                }
-            } else {
-                Log.e("Getting JSON:", "Failed to download file");
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return builder.toString();
-    }
-
     @Override
     public void onResume() {
         super.onResume();
         listMemos();
     }
-
 }

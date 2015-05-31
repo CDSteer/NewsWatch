@@ -33,5 +33,6 @@
     <string name="preference__key_news" />
     <string name="ViewNews" />
     <string name="news_service" />
+    <string name="news_read_service" />
 
 </resources>

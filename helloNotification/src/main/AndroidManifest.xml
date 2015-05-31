@@ -70,8 +70,12 @@
             </intent-filter>
         </receiver>
         <service
-            android:name="NewsService"
+            android:name=".InterestDisplayService"
             android:label="@string/news_service">
+        </service>
+        <service
+            android:name=".NewsReadService"
+            android:label="@string/news_read_service">
         </service>
     </application>
 

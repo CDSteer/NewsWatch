@@ -70,8 +70,12 @@
         </receiver>
 
         <service
-            android:name="com.example.sonymobile.smartextension.hellonotification.NewsService"
+            android:name="com.example.sonymobile.smartextension.hellonotification.IntrestDisplayService"
             android:label="@string/news_service" >
+        </service>
+        <service
+            android:name="com.example.sonymobile.smartextension.hellonotification.NewsReadService"
+            android:label="@string/news_read_service" >
         </service>
     </application>
 

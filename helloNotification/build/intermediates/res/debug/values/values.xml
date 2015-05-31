@@ -49,6 +49,7 @@
     <string name="clear_success">All notifications have been cleared</string>
     <string name="configuration_text">Hello Notification settings</string>
     <string name="extension_name">Hello Notification</string>
+    <string name="news_read_service"/>
     <string name="news_service"/>
     <string name="preference__key_news"/>
     <string name="preference_activity_title">Hello Notification settings</string>

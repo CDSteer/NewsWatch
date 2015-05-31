@@ -230,20 +230,21 @@ containing a value of this type.
         public static final int clear_success=0x7f080007;
         public static final int configuration_text=0x7f080008;
         public static final int extension_name=0x7f080009;
-        public static final int news_service=0x7f08000a;
-        public static final int preference__key_news=0x7f08000b;
-        public static final int preference_activity_title=0x7f08000c;
-        public static final int preference_key_clear=0x7f08000d;
-        public static final int preference_key_read_me=0x7f08000e;
-        public static final int preference_key_send=0x7f08000f;
-        public static final int preference_option_clear=0x7f080010;
-        public static final int preference_option_clear_txt=0x7f080011;
-        public static final int preference_option_news=0x7f080012;
-        public static final int preference_option_read_me=0x7f080013;
-        public static final int preference_option_read_me_txt=0x7f080014;
-        public static final int preference_option_send=0x7f080015;
-        public static final int source_name=0x7f080016;
-        public static final int text_to_speech=0x7f080017;
+        public static final int news_read_service=0x7f08000a;
+        public static final int news_service=0x7f08000b;
+        public static final int preference__key_news=0x7f08000c;
+        public static final int preference_activity_title=0x7f08000d;
+        public static final int preference_key_clear=0x7f08000e;
+        public static final int preference_key_read_me=0x7f08000f;
+        public static final int preference_key_send=0x7f080010;
+        public static final int preference_option_clear=0x7f080011;
+        public static final int preference_option_clear_txt=0x7f080012;
+        public static final int preference_option_news=0x7f080013;
+        public static final int preference_option_read_me=0x7f080014;
+        public static final int preference_option_read_me_txt=0x7f080015;
+        public static final int preference_option_send=0x7f080016;
+        public static final int source_name=0x7f080017;
+        public static final int text_to_speech=0x7f080018;
     }
     public static final class style {
         public static final int ExtensionLightTheme=0x7f060000;

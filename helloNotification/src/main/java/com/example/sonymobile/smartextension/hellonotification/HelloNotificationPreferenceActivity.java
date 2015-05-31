@@ -86,10 +86,9 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         // Load the preferences from an XML resource.
         addPreferencesFromResource(R.xml.preferences);
-        
+
         StrictMode.ThreadPolicy policy = new StrictMode.
                 ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -140,6 +139,14 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
             preference = findPreference(getString(R.string.preference_key_clear));
             getPreferenceScreen().removePreference(preference);
         }
+
+        Intent i = new Intent(this.getApplicationContext(), InterestDisplayService.class);
+        this.startService(i);
+        i = new Intent(this.getApplicationContext(), NewsReadService.class);
+        this.startService(i);
+
+        Toast toast = Toast.makeText(getApplicationContext(), "Services Started", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
