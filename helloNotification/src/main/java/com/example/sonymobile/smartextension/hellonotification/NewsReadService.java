@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,15 +30,23 @@ public class NewsReadService extends Service{
     final String URL = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + KEYWORDS + "&product[]="
             + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
             RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
-
+    StringBuilder builder = new StringBuilder();
+    HttpClient client = new DefaultHttpClient();
     android.os.Handler mHandler;
     public static String newsJson;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        //
+        return Service.START_STICKY;
+    }
+
+    @Override
+    public void onCreate(){
         mHandler = new android.os.Handler();
         ping();
-        return Service.START_STICKY;
+        Toast toast = Toast.makeText(getApplicationContext(), "NewsReadService Started", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
@@ -64,8 +73,6 @@ public class NewsReadService extends Service{
     }
 
     public void readNews() {
-        StringBuilder builder = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
         String line = "";
         HttpGet httpGet = new HttpGet(URL);
         try {

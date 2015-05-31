@@ -30,9 +30,11 @@
     <string name="preference_key_send">preference_key_send</string>
     <string name="button_send_notification">Send notification</string>
     <string name="preference_option_news" />
-    <string name="preference__key_news" />
+    <string name="preference__key_news">preference__key_news</string>
     <string name="ViewNews" />
     <string name="news_service" />
     <string name="news_read_service" />
+    <string name="preference_key_user_news">preference_key_user_news</string>
+    <string name="ViewSavedNews" />
 
 </resources>

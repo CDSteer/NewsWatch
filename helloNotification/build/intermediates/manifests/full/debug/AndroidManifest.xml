@@ -31,6 +31,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HelloNotificationPreferenceActivity" />
         </activity>
+        <activity
+            android:name="com.example.sonymobile.smartextension.hellonotification.ViewSavedNews"
+            android:label="@string/ViewSavedNews"
+            android:parentActivityName="com.example.sonymobile.smartextension.hellonotification.ViewSavedNews" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelloNotificationPreferenceActivity" />
+        </activity>
 
         <service android:name="com.example.sonymobile.smartextension.hellonotification.HelloNotificationExtensionService" />
         <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >
@@ -70,7 +78,7 @@
         </receiver>
 
         <service
-            android:name="com.example.sonymobile.smartextension.hellonotification.IntrestDisplayService"
+            android:name="com.example.sonymobile.smartextension.hellonotification.InterestDisplayService"
             android:label="@string/news_service" >
         </service>
         <service

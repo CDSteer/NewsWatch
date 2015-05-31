@@ -85,12 +85,16 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent i = new Intent(this.getApplicationContext(), InterestDisplayService.class);
+        this.startService(i);
+        i = new Intent(this.getApplicationContext(), NewsReadService.class);
+        this.startService(i);
 
         // Load the preferences from an XML resource.
         addPreferencesFromResource(R.xml.preferences);
 
         StrictMode.ThreadPolicy policy = new StrictMode.
-                ThreadPolicy.Builder().permitAll().build();
+        ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         // Show Readme dialogue.
@@ -98,6 +102,7 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Log.v("read me", "pressed");
                 showDialog(DIALOG_READ_ME);
                 return true;
             }
@@ -108,6 +113,7 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Log.v("send", "pressed");
                 String theNews = readNews();
                 parseNews(theNews);
                 return true;
@@ -119,7 +125,19 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Log.v("clear", "pressed");
                 showDialog(DIALOG_CLEAR);
+                return true;
+            }
+        });
+
+        preference = findPreference(getString(R.string.preference_key_user_news));
+        preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                Log.v("my Scoops", "pressed");
+                Intent intent = new Intent(HelloNotificationPreferenceActivity.this, ViewSavedNews.class);
+                startActivity(intent);
                 return true;
             }
         });
@@ -128,11 +146,14 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
         preference.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
+                Log.v("get Scoops", "pressed");
                 Intent intent = new Intent(HelloNotificationPreferenceActivity.this, ViewNews.class);
                 startActivity(intent);
                 return true;
             }
         });
+
+
 
         // Remove preferences that are not supported by the accessory.
         if (!ExtensionUtils.supportsHistory(getIntent())) {
@@ -140,13 +161,6 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
             getPreferenceScreen().removePreference(preference);
         }
 
-        Intent i = new Intent(this.getApplicationContext(), InterestDisplayService.class);
-        this.startService(i);
-        i = new Intent(this.getApplicationContext(), NewsReadService.class);
-        this.startService(i);
-
-        Toast toast = Toast.makeText(getApplicationContext(), "Services Started", Toast.LENGTH_LONG);
-        toast.show();
     }
 
     @Override

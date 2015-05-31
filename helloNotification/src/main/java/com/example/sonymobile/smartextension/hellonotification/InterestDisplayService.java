@@ -10,6 +10,7 @@ import com.sonyericsson.extras.liveware.aef.notification.Notification;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionUtils;
 import com.sonyericsson.extras.liveware.extension.util.notification.NotificationUtil;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -19,11 +20,18 @@ public class InterestDisplayService extends Service {
     android.os.Handler mHandler;
     Random rand = new Random();
 
+    public static ArrayList<String> savedNews = new ArrayList<String>();
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        //
+        return Service.START_STICKY;
+    }
+
+    @Override
+    public void onCreate(){
         mHandler = new android.os.Handler();
         ping();
-        return Service.START_STICKY;
     }
 
     @Override
@@ -33,9 +41,13 @@ public class InterestDisplayService extends Service {
 
     private void ping() {
         try {
-            int x = rand.nextInt(ViewNews.savedNews.size()-1);
-            String[] fields = new String[] {"BBC News", ViewNews.savedNews.get(x)};
-            sendNews(fields);
+            synchronized (savedNews) {
+                if (savedNews.size()>=1) {
+                    int x = rand.nextInt(savedNews.size() - 1);
+                    String[] fields = new String[]{"BBC News", savedNews.get(x)};
+                    sendNews(fields);
+                }
+            }
         } catch (Exception e) {
             Log.e("Error", "In onStartCommand");
             e.printStackTrace();

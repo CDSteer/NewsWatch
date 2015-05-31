@@ -46,7 +46,7 @@ import java.util.List;
 public class ViewNews extends Activity {
 
     protected ListAdapter adapter;
-    public static ArrayList<String> savedNews = new ArrayList<String>();
+
     ListView listView;
     ArrayList<Article> articles = new ArrayList();
     //String newsJson = NewsReadService.newsJson;
@@ -62,13 +62,15 @@ public class ViewNews extends Activity {
                 view.setBackgroundColor(Color.parseColor("#00b200"));
                 TextView textView = (TextView) view.findViewById(R.id.name);
                 String text = (String) textView.getText();
-                savedNews.add(text);
+                synchronized (InterestDisplayService.savedNews) {
+                    InterestDisplayService.savedNews.add(text);
+                }
             }
         });
-        listMemos();
+        listNews();
     }
 
-    public void listMemos() {
+    public void listNews() {
         addData(NewsReadService.newsJson);
         populateList();
     }
@@ -106,6 +108,6 @@ public class ViewNews extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        listMemos();
+        listNews();
     }
 }
