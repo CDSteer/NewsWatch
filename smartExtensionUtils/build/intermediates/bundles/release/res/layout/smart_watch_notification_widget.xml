@@ -19,6 +19,9 @@
         android:scaleType="fitEnd"
         android:src="@drawable/text_bg" />
 
+
+        <!-- dkfnmdfkn-->
+
     <com.sonyericsson.extras.liveware.extension.util.AefTextView
         android:layout_width="76px"
         android:layout_height="wrap_content"
@@ -27,7 +30,7 @@
         android:layout_marginLeft="3px"
         android:id="@+id/smart_watch_notification_widget_text_time"
         android:textSize="@dimen/smart_watch_text_size_widget_time"
-        android:textColor="@color/smart_watch_text_color_grey" />
+        android:textColor="@color/smart_watch_text_color_white" />
 
     <com.sonyericsson.extras.liveware.extension.util.AefTextView
         android:layout_width="wrap_content"
@@ -37,8 +40,8 @@
         android:layout_alignLeft="@id/smart_watch_notification_widget_text_time"
         android:id="@+id/smart_watch_notification_widget_text_title"
         android:textSize="@dimen/smart_watch_text_size_small"
-        android:textColor="@android:color/white" />
-    
+        android:textColor="#00FF00"/>
+
     <com.sonyericsson.extras.liveware.extension.util.AefTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,4 +53,4 @@
         android:textColor="@android:color/white" />
 
 </RelativeLayout>
-<!-- From: file:/Users/cdsteer/HelloNotification/smartExtensionUtils/src/main/res/layout/smart_watch_notification_widget.xml -->
+<!-- From: file:/Users/tdjneate/Desktop/NewsWatch/smartExtensionUtils/src/main/res/layout/smart_watch_notification_widget.xml -->

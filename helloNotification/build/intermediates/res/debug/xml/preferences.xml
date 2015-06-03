@@ -25,4 +25,4 @@
         android:key="@string/preference_key_user_news"
         android:title="My Scoops" />
 
-</PreferenceScreen><!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/xml/preferences.xml -->
+</PreferenceScreen><!-- From: file:/Users/tdjneate/Desktop/NewsWatch/helloNotification/src/main/res/xml/preferences.xml -->

@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionAPI/unspecified/jars/classes.jar"
+        jar="/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="678f465f1cb9146c4823597ba1d32ee3ee075286">
-        <dex dex="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/pre-dexed/debug/classes-ea821f68e6cbbfeaf0c2885fd9b79dc812a89b5b.jar" />
+        sha1="b94b6f496b2497211e363ec06cdf0e58f38b287b">
+        <dex dex="/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/pre-dexed/debug/classes-71e496c0dd68f6c041845b25a0338c8f7cba14e8.jar" />
     </item>
     <item
-        jar="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/jars/classes.jar"
+        jar="/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionAPI/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="14a17309846eaaeb72a2c451a7e9fc29bbb0dfb9">
-        <dex dex="/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/pre-dexed/debug/classes-cfd85d7c17b65a195dba531f0ee435043f1b315f.jar" />
+        sha1="9bf4b7036e390b47586fd523c465c0de9c2cfa97">
+        <dex dex="/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/pre-dexed/debug/classes-0a83b50cd65bd5b4531606e57dcbcebef284d2d1.jar" />
     </item>
 
 </items>

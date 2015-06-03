@@ -11,10 +11,10 @@
         android:src="@drawable/widget_frame" />
 
     <ImageView
-        android:layout_width="@dimen/smart_watch_widget_width_inner"
-        android:layout_height="@dimen/smart_watch_widget_height_inner"
-        android:layout_centerInParent="true"
-        android:id="@+id/smart_watch_widget_custom_image" />
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_centerInParent="false"
+        android:id="@+id/smart_watch_widget_custom_image"/>
 
     <TextView
         android:layout_width="88px"
@@ -27,7 +27,7 @@
         android:gravity="center_vertical|center_horizontal" />
 
     <ImageView
-        android:layout_width="30px"
+        android:layout_width="200px"
         android:layout_height="30px"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -58,4 +58,4 @@
         android:gravity="center_horizontal" />
 
 </RelativeLayout>
-<!-- From: file:/Users/cdsteer/HelloNotification/smartExtensionUtils/src/main/res/layout/smart_watch_widget.xml --><!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/res/layout/smart_watch_widget.xml -->
+<!-- From: file:/Users/tdjneate/Desktop/NewsWatch/smartExtensionUtils/src/main/res/layout/smart_watch_widget.xml --><!-- From: file:/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/res/layout/smart_watch_widget.xml -->

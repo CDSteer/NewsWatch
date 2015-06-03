@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/res/values/values.xml -->
+    <!-- From: file:/Users/tdjneate/Desktop/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/res/values/values.xml -->
     <eat-comment/>
     <color name="smart_watch_2_text_color_grey">#ffe6e6e6</color>
-    <color name="smart_watch_2_text_color_orange">#fff0832d</color>
-    <color name="smart_watch_2_text_color_white">#ffffffff</color>
+    <color name="smart_watch_2_text_color_orange">#F40000</color>
+    <color name="smart_watch_2_text_color_white">#ffff5789</color>
     <color name="smart_watch_text_color_grey">#ffe6e6e6</color>
     <color name="smart_watch_text_color_orange">#fff0832d</color>
     <color name="smart_watch_text_color_white">#ffffffff</color>
@@ -16,9 +16,9 @@
     <dimen name="smart_watch_2_control_height">176px</dimen>
     <dimen name="smart_watch_2_control_width">220px</dimen>
     <dimen name="smart_watch_2_statusbar_height">28px</dimen>
-    <dimen name="smart_watch_2_text_size_large">20px</dimen>
-    <dimen name="smart_watch_2_text_size_medium">15px</dimen>
-    <dimen name="smart_watch_2_text_size_small">13px</dimen>
+    <dimen name="smart_watch_2_text_size_large">200px</dimen>
+    <dimen name="smart_watch_2_text_size_medium">700px</dimen>
+    <dimen name="smart_watch_2_text_size_small">130px</dimen>
     <dimen name="smart_watch_2_widget_cell_height">34px</dimen>
     <dimen name="smart_watch_2_widget_cell_width">43px</dimen>
     <dimen name="smart_watch_2_widget_height">170px</dimen>
@@ -37,7 +37,7 @@
     <dimen name="smart_watch_widget_text_background_width">@dimen/smart_watch_widget_width_inner</dimen>
     <dimen name="smart_watch_widget_width_inner">92px</dimen>
     <dimen name="smart_watch_widget_width_outer">128px</dimen>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/tdjneate/Desktop/NewsWatch/helloNotification/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="ViewNews"/>
     <string name="ViewSavedNews"/>
@@ -66,7 +66,7 @@
     <string name="preference_option_send">Send notifications</string>
     <string name="source_name">Notification source</string>
     <string name="text_to_speech">New notification event from</string>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/tdjneate/Desktop/NewsWatch/helloNotification/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ExtensionLightTheme" parent="@android:style/Theme"/>
 </resources>
