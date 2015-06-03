@@ -67,47 +67,17 @@ public class ViewNews extends Activity {
                 }
             }
         });
-        listNews();
-    }
-
-    public void listNews() {
-        addData(NewsReadService.newsJson);
         populateList();
     }
 
-    public void addData(String json){
-        JSONArray jsonArray = null;
-        String[] news = new String[2];
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            jsonArray = jsonObject.getJSONArray("articles");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                JSONObject jo = jsonArray.getJSONObject(i);
-                news[0] = jo.getString("title");
-                news[1] = jo.getString("description");
-                addToList(news);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void addToList(String[] news) {
-        articles.add(new Article(news[0], news[1]));
-    }
-
-    private void populateList(){
-        adapter = new MyArrayAdapter(this, articles);
+    private void populateList() {
+        adapter = new MyArrayAdapter(this, NewsReadService.articles);
         listView.setAdapter(adapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        listNews();
+        populateList();
     }
 }

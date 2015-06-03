@@ -13,11 +13,15 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Created by cdsteer on 31/05/15.
@@ -33,7 +37,7 @@ public class NewsReadService extends Service{
     StringBuilder builder = new StringBuilder();
     HttpClient client = new DefaultHttpClient();
     android.os.Handler mHandler;
-    public static String newsJson;
+    public static ArrayList<Article> articles = new ArrayList<Article>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -56,12 +60,42 @@ public class NewsReadService extends Service{
 
     private void ping() {
         try {
-            readNews();
+            String newsJson = readNews();
+            parseNews(newsJson);
         } catch (Exception e) {
             Log.e("Error", "In onStartCommand");
             e.printStackTrace();
         }
         scheduleNext();
+    }
+
+    private void parseNews(String json) {
+        JSONArray jsonArray = null;
+        String[] news = new String[5];
+        try {
+            JSONObject jsonObject = new JSONObject(json);
+            jsonArray = jsonObject.getJSONArray("articles");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                JSONObject jo = jsonArray.getJSONObject(i);
+                news[0] = jo.getString("title");
+                news[1] = jo.getString("description");
+                news[2] = jo.getString("cps_id");
+                JSONObject imageObject = jo.getJSONObject("image");
+                news[3] = imageObject.getString("src");
+                news[4] = jo.getString("url");
+                addToArticles(news);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void addToArticles(String[] news) {
+        articles.add(new Article(news[0], news[1], news[2], news[3], news[4]));
     }
 
     private void scheduleNext() {
@@ -72,7 +106,7 @@ public class NewsReadService extends Service{
         }, 60000);
     }
 
-    public void readNews() {
+    public String readNews() {
         String line = "";
         HttpGet httpGet = new HttpGet(URL);
         try {
@@ -94,6 +128,6 @@ public class NewsReadService extends Service{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        newsJson = builder.toString();
+        return builder.toString();
     }
 }

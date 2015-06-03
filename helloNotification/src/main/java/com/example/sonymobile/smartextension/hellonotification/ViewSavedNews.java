@@ -38,7 +38,7 @@ public class ViewSavedNews extends Activity{
             if (InterestDisplayService.savedNews.size()>=1){
                 ArrayList<Article> userNews = new ArrayList();
                 for (int i = 0; i < InterestDisplayService.savedNews.size(); i++) {
-                    Article article = new Article(InterestDisplayService.savedNews.get(i), "");
+                    Article article = new Article(InterestDisplayService.savedNews.get(i), "", null, null, null);
                     userNews.add(article);
                 }
                 adapter = new MyArrayAdapter(this, userNews);

@@ -50,4 +50,4 @@
         android:textColor="@android:color/white" />
 
 </RelativeLayout>
-<!-- From: file:/Users/cdsteer/HelloNotification/smartExtensionUtils/src/main/res/layout/smart_watch_notification_widget.xml --><!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/res/layout/smart_watch_notification_widget.xml -->
+<!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/smartExtensionUtils/src/main/res/layout/smart_watch_notification_widget.xml --><!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/res/layout/smart_watch_notification_widget.xml -->
