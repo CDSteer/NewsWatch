@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/HelloNotification.iml" filepath="$PROJECT_DIR$/HelloNotification.iml" />
       <module fileurl="file://$PROJECT_DIR$/NewsWatch.iml" filepath="$PROJECT_DIR$/NewsWatch.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloNotification/NewsWatch.iml" filepath="$PROJECT_DIR$/helloNotification/NewsWatch.iml" />
       <module fileurl="file://$PROJECT_DIR$/helloNotification/helloNotification.iml" filepath="$PROJECT_DIR$/helloNotification/helloNotification.iml" />
