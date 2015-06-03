@@ -59,11 +59,14 @@ public class ViewNews extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setBackgroundColor(Color.parseColor("#00b200"));
                 TextView textView = (TextView) view.findViewById(R.id.name);
                 String text = (String) textView.getText();
-                synchronized (InterestDisplayService.savedNews) {
-                    InterestDisplayService.savedNews.add(text);
+                Article article = (Article)textView.getTag();
+                article.changeInterest();
+                if (article.isInterested() == true) {
+                    view.setBackgroundColor(Color.parseColor("#00b200"));
+                } else {
+                    view.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 }
             }
         });
@@ -71,7 +74,7 @@ public class ViewNews extends Activity {
     }
 
     private void populateList() {
-        adapter = new MyArrayAdapter(this, NewsReadService.articles);
+        adapter = new MyArrayAdapter(this, NewsReadService.getArticles());
         listView.setAdapter(adapter);
     }
 

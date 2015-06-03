@@ -34,17 +34,15 @@ public class ViewSavedNews extends Activity{
     }
 
     private void populateList(){
-        synchronized (InterestDisplayService.savedNews) {
-            if (InterestDisplayService.savedNews.size()>=1){
-                ArrayList<Article> userNews = new ArrayList();
-                for (int i = 0; i < InterestDisplayService.savedNews.size(); i++) {
-                    Article article = new Article(InterestDisplayService.savedNews.get(i), "", null, null, null);
-                    userNews.add(article);
-                }
-                adapter = new MyArrayAdapter(this, userNews);
-                listView.setAdapter(adapter);
+        ArrayList<Article> userNews = new ArrayList();
+        ArrayList<Article> articles = NewsReadService.getArticles();
+        for (int i = 0; i < articles.size(); i++) {
+            if (articles.get(i).isInterested() == true) {
+                userNews.add(articles.get(i));
             }
         }
+        adapter = new MyArrayAdapter(this, userNews);
+        listView.setAdapter(adapter);
     }
 
     @Override

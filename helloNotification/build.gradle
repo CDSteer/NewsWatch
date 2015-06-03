@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sonymobile.smartextension.hellonotification"
-        minSdkVersion 7
+        minSdkVersion 14
         targetSdkVersion 18
     }
 

@@ -3,10 +3,13 @@ package com.example.sonymobile.smartextension.hellonotification;
 import android.app.Service;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.IBinder;
 import android.util.Log;
 
 import com.sonyericsson.extras.liveware.aef.notification.Notification;
+import com.sonyericsson.extras.liveware.aef.registration.Registration;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionUtils;
 import com.sonyericsson.extras.liveware.extension.util.notification.NotificationUtil;
 
@@ -41,11 +44,10 @@ public class InterestDisplayService extends Service {
 
     private void ping() {
         try {
-            synchronized (savedNews) {
-                if (savedNews.size()>=1) {
-                    int x = rand.nextInt(savedNews.size() - 1);
-                    String[] fields = new String[]{"BBC News", savedNews.get(x)};
-                    sendNews(fields);
+            ArrayList<Article> articles = NewsReadService.getArticles();
+            for (int i = 0; i < articles.size(); i++) {
+                if (articles.get(i).isInterested() == true) {
+                    sendNews(articles.get(i));
                 }
             }
         } catch (Exception e) {
@@ -58,10 +60,10 @@ public class InterestDisplayService extends Service {
     private void scheduleNext() {
         mHandler.postDelayed(new Runnable() {
             public void run() { ping(); }
-        }, 60000);
+        }, 10000);
     }
 
-    private void sendNews(String[] news){
+    private void sendNews(Article news){
         long time = System.currentTimeMillis();
         long sourceId = NotificationUtil.getSourceId(this,
                 HelloNotificationExtensionService.EXTENSION_SPECIFIC_ID);
@@ -69,12 +71,15 @@ public class InterestDisplayService extends Service {
             Log.e(HelloNotificationExtensionService.LOG_TAG, "Failed to insert data");
             return;
         }
+        Drawable d = new BitmapDrawable(getResources(), news.getImage());
         String profileImage = ExtensionUtils.getUriString(this,
                 R.drawable.widget_default_userpic_bg);
+        
+        Log.v("InterestsImage",profileImage);
         ContentValues eventValues = new ContentValues();
         eventValues.put(Notification.EventColumns.EVENT_READ_STATUS, false);
-        eventValues.put(Notification.EventColumns.DISPLAY_NAME, news[0]);
-        eventValues.put(Notification.EventColumns.MESSAGE, news[1]);
+        eventValues.put(Notification.EventColumns.DISPLAY_NAME, news.getTitle());
+        eventValues.put(Notification.EventColumns.MESSAGE, news.getDescription());
         eventValues.put(Notification.EventColumns.PERSONAL, 1);
         eventValues.put(Notification.EventColumns.PROFILE_IMAGE_URI, profileImage);
         eventValues.put(Notification.EventColumns.PUBLISHED_TIME, time);

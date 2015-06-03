@@ -19,6 +19,7 @@ public class Article {
     private String imageUrl;
     private Bitmap image;
     private String url;
+    private boolean interests;
 
     public Article(String title, String description, String cpsID, String imageURL, String url) {
         super();
@@ -28,7 +29,7 @@ public class Article {
         this.imageUrl = imageURL;
         this.url = url;
         loadImage(this.imageUrl);
-        // favorite
+        interests = false;
     }
 
     public String getTitle() {
@@ -59,6 +60,14 @@ public class Article {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeInterest() {
+        interests = !interests;
+    }
+
+    public boolean isInterested() {
+        return interests;
     }
 
     public Bitmap getImage() {

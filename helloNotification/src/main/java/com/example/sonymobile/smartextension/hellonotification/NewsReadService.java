@@ -130,4 +130,8 @@ public class NewsReadService extends Service{
         }
         return builder.toString();
     }
+
+    public static ArrayList<Article> getArticles() {
+        return articles;
+    }
 }
