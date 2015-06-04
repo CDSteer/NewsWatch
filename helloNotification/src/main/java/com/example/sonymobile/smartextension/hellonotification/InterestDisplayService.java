@@ -31,11 +31,8 @@ public class InterestDisplayService extends ExtensionService {
     Random rand = new Random();
 
     public static ArrayList<String> savedNews = new ArrayList<String>();
-    private String hostAppPackageName;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //
-        hostAppPackageName = intent.getStringExtra(Widget.Intents.EXTRA_AHA_PACKAGE_NAME);
         return Service.START_STICKY;
     }
 
@@ -68,7 +65,6 @@ public class InterestDisplayService extends ExtensionService {
                     sendNews(articles.get(i));
                 }
             }
-            sendWatchImage(articles.get(0));
         } catch (Exception e) {
             Log.e("Error", "In onStartCommand");
             e.printStackTrace();
@@ -81,21 +77,7 @@ public class InterestDisplayService extends ExtensionService {
             public void run() {
                 ping();
             }
-        }, 10000);
-    }
-
-    private void sendWatchImage(Article news){
-        MyControlExtension myControlExtension = new MyControlExtension(this.getApplicationContext(),  hostAppPackageName);
-        myControlExtension.setScreenState(Control.Intents.SCREEN_STATE_ON); // (to make sure the screen is on)
-        myControlExtension.showLayout(R.layout.control_image, null);
-        Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
-        Bitmap bmp = Bitmap.createBitmap(10, 10, conf); // this creates a MUTABLE bitmap
-        myControlExtension.sendImage(R.id.imageview1, bmp);
-        myControlExtension.startVibrator(10, 10, 10);
-
-        myControlExtension.start();
-
-        Log.v("Happiness", "IMAGE SENT!");
+        }, 30000);
     }
 
     private void sendNews(Article news){

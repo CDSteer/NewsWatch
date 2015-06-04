@@ -12,6 +12,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+
     <application
         android:allowBackup="false"
         android:icon="@drawable/icon"
@@ -36,6 +41,14 @@
             android:name="com.example.sonymobile.smartextension.hellonotification.ViewSavedNews"
             android:label="@string/ViewSavedNews"
             android:parentActivityName="com.example.sonymobile.smartextension.hellonotification.ViewSavedNews" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelloNotificationPreferenceActivity" />
+        </activity>
+        <activity
+            android:name="com.example.sonymobile.smartextension.hellonotification.Interests"
+            android:label="@string/Interests"
+            android:parentActivityName="com.example.sonymobile.smartextension.hellonotification.Interests" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HelloNotificationPreferenceActivity" />

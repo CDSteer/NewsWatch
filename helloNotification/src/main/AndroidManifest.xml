@@ -10,7 +10,12 @@
 
     <uses-permission android:name="com.sonyericsson.extras.liveware.aef.EXTENSION_PERMISSION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="false"
@@ -18,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@style/ExtensionLightTheme" >
         <activity
-            android:name="com.example.sonymobile.smartextension.hellonotification.HelloNotificationPreferenceActivity"
+            android:name=".HelloNotificationPreferenceActivity"
             android:label="@string/preference_activity_title" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +37,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HelloNotificationPreferenceActivity" />
         </activity>
-
         <activity
             android:name=".ViewSavedNews"
             android:label="@string/ViewSavedNews"
@@ -41,16 +45,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HelloNotificationPreferenceActivity" />
         </activity>
+        <activity
+            android:name=".Interests"
+            android:label="@string/Interests"
+            android:parentActivityName=".Interests" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelloNotificationPreferenceActivity" />
+        </activity>
 
-        <service android:name="com.example.sonymobile.smartextension.hellonotification.HelloNotificationExtensionService" />
+        <service android:name=".HelloNotificationExtensionService" />
         <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >
             <intent-filter>
                 <action android:name="com.sonyericsson.extras.liveware.aef.tunnel.action.BIND" />
             </intent-filter>
         </service>
-        
-        <receiver
-            android:name="com.example.sonymobile.smartextension.hellonotification.HelloNotificationExtensionReceiver">
+
+        <receiver android:name=".HelloNotificationExtensionReceiver" >
             <intent-filter>
 
                 <!-- Generic extension intents. -->
@@ -79,14 +90,16 @@
                 <action android:name="com.sonyericsson.extras.aef.control.SWIPE_EVENT" />
             </intent-filter>
         </receiver>
+
         <service
             android:name=".InterestDisplayService"
-            android:label="@string/news_service">
+            android:label="@string/news_service" >
         </service>
         <service
             android:name=".NewsReadService"
-            android:label="@string/news_read_service">
+            android:label="@string/news_read_service" >
         </service>
+
     </application>
 
 </manifest>

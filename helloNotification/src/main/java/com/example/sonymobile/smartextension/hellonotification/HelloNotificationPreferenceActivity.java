@@ -103,7 +103,8 @@ public class HelloNotificationPreferenceActivity extends PreferenceActivity {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 Log.v("read me", "pressed");
-                showDialog(DIALOG_READ_ME);
+                Intent intent = new Intent(HelloNotificationPreferenceActivity.this, Interests.class);
+                startActivity(intent);
                 return true;
             }
         });

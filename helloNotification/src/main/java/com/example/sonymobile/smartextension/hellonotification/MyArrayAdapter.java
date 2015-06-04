@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +24,9 @@ public class MyArrayAdapter extends ArrayAdapter<Article> {
         this.itemsArrayList = itemsArrayList;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         // 1. Create inflater
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 

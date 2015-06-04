@@ -27,27 +27,29 @@ import java.util.ArrayList;
  * Created by cdsteer on 31/05/15.
  */
 public class NewsReadService extends Service {
-    final String KEYWORDS = "Swansea";
+    String keywords = "";
     final String PRODUCT = "NewsWeb";
     final String CONTENT_FORMAT = "TextualFormat";
     final String RECENT_FIRST = "yes";
-    final String URL = "http://data.bbc.co.uk/bbcrd-juicer/articles.json?text=" + KEYWORDS + "&product[]="
-            + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&recent_first=" +
+    final String PUBLISHED_AFTER = "2015-06-03T00:00:00.000Z";
+    final String URL = "http://data.test.bbc.co.uk/bbcrd-juicer/articles?text=" + keywords + "&product[]="
+            + PRODUCT + "&content_format[]=" + CONTENT_FORMAT + "&published_after=" + PUBLISHED_AFTER + "&recent_first=" +
             RECENT_FIRST + "&apikey=3O320TNQSzygKXF8frRiNBQnAANSyUl7";
     StringBuilder builder = new StringBuilder();
     HttpClient client = new DefaultHttpClient();
     android.os.Handler mHandler;
+    android.os.Handler mHandler2;
     public static ArrayList<Article> articles = new ArrayList<Article>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //
         return Service.START_STICKY;
     }
 
     @Override
     public void onCreate(){
         mHandler = new android.os.Handler();
+        mHandler2 = new android.os.Handler();
         ping();
         Toast toast = Toast.makeText(getApplicationContext(), "NewsReadService Started", Toast.LENGTH_LONG);
         toast.show();
@@ -60,6 +62,7 @@ public class NewsReadService extends Service {
 
     private void ping() {
         try {
+            updateKeywords();
             String newsJson = readNews();
             parseNews(newsJson);
         } catch (Exception e) {
@@ -69,23 +72,54 @@ public class NewsReadService extends Service {
         scheduleNext();
     }
 
+    private void ping2() {
+        try {
+            updateKeywords();
+        } catch (Exception e) {
+            Log.e("Error", "In onStartCommand");
+            e.printStackTrace();
+        }
+        scheduleNext2();
+    }
+
+    private void scheduleNext2() {
+        mHandler2.postDelayed(new Runnable() {
+            public void run() {
+                ping2();
+            }
+        }, 5000);
+    }
+
+    private void updateKeywords() {
+        for (int i = 0; i < Interests.keywords.size(); i++) {
+            String keyword = Interests.keywords.get(i).getTitle();
+            if (keywords.equals("")) {
+                keywords = replaceSpaces(keyword);
+            } else {
+                keywords = keywords + "%20OR%20" + replaceSpaces(keyword);
+            }
+        }
+        Log.v("keywords","Hi: " + keywords);
+    }
+
     private void parseNews(String json) {
+        Log.v("parsing","I am here!");
         JSONArray jsonArray = null;
         String[] news = new String[5];
         try {
             JSONObject jsonObject = new JSONObject(json);
-            jsonArray = jsonObject.getJSONArray("articles");
+            jsonArray = jsonObject.getJSONArray("hits");
+            Log.v("parsing", jsonArray.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < jsonArray.length(); i++) {
+        for (int i = 0; i < Math.min(20,jsonArray.length()); i++) {
             try {
                 JSONObject jo = jsonArray.getJSONObject(i);
                 news[0] = jo.getString("title");
                 news[1] = jo.getString("description");
-                news[2] = jo.getString("cps_id");
-                JSONObject imageObject = jo.getJSONObject("image");
-                news[3] = imageObject.getString("src");
+                news[2] = jo.getString("id");
+                news[3] = jo.getString("image");
                 news[4] = jo.getString("url");
                 addToArticles(news);
             } catch (JSONException e) {
@@ -98,12 +132,16 @@ public class NewsReadService extends Service {
         articles.add(new Article(news[0], news[1], news[2], news[3], news[4]));
     }
 
+    private String replaceSpaces(String keyword) {
+        return keyword.replace(" ", "%20");
+    }
+
     private void scheduleNext() {
         mHandler.postDelayed(new Runnable() {
             public void run() {
                 ping();
             }
-        }, 60000);
+        }, 30000);
     }
 
     public String readNews() {
