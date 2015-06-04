@@ -134,7 +134,8 @@ public class InterestDisplayService extends ExtensionService {
         eventValues.put(Notification.EventColumns.PROFILE_IMAGE_URI, imageURI);
         eventValues.put(Notification.EventColumns.PUBLISHED_TIME, time);
         eventValues.put(Notification.EventColumns.SOURCE_ID, sourceId);
-        eventValues.put(Notification.EventColumns.IMAGE_URI, imageURI);
+
+        eventValues.put(Notification.EventColumns.IMAGE_URI, R.drawable.blueNotification);
         NotificationUtil.addEvent(this, eventValues);
     }
 }
