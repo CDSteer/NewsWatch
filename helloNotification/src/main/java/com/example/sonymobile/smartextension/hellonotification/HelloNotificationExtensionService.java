@@ -35,11 +35,14 @@ package com.example.sonymobile.smartextension.hellonotification;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.sonyericsson.extras.liveware.aef.control.Control;
 import com.sonyericsson.extras.liveware.aef.notification.Notification;
 import com.sonyericsson.extras.liveware.aef.registration.Registration;
+import com.sonyericsson.extras.liveware.aef.widget.Widget;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionService;
 import com.sonyericsson.extras.liveware.extension.util.registration.DeviceInfoHelper;
 import com.sonyericsson.extras.liveware.extension.util.registration.RegistrationInformation;
@@ -65,6 +68,14 @@ public class HelloNotificationExtensionService extends ExtensionService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        MyControlExtension myControlExtension = new MyControlExtension(this.getApplicationContext(),  intent.getStringExtra(Widget.Intents.EXTRA_AHA_PACKAGE_NAME));
+        myControlExtension.setScreenState(Control.Intents.SCREEN_STATE_DIM); // (to make sure the screen is on)
+        myControlExtension.showLayout(R.layout.control_image, null);
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
+        Bitmap bmp = Bitmap.createBitmap(220, 176, conf); // this creates a MUTABLE bitmap
+        myControlExtension.sendImage(R.id.imageview1, bmp);
+        myControlExtension.startVibrator(0200, 1000, 1);
+
         return super.onStartCommand(intent, flags, startId);
     }
 

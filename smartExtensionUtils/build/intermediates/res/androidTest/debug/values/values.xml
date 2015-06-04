@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/cdsteer/HelloNotification/smartExtensionUtils/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/smartExtensionUtils/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <color name="smart_watch_2_text_color_grey">#ffe6e6e6</color>
     <color name="smart_watch_2_text_color_orange">#fff0832d</color>
@@ -37,7 +37,7 @@
     <dimen name="smart_watch_widget_text_background_width">@dimen/smart_watch_widget_width_inner</dimen>
     <dimen name="smart_watch_widget_width_inner">92px</dimen>
     <dimen name="smart_watch_widget_width_outer">128px</dimen>
-    <!-- From: file:/Users/cdsteer/HelloNotification/smartExtensionUtils/build/intermediates/exploded-aar/HelloNotification/smartExtensionAPI/unspecified/res/values/values.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/smartExtensionUtils/build/intermediates/exploded-aar/NewsWatch/smartExtensionAPI/unspecified/res/values/values.xml -->
     <eat-comment/>
     <string name="app_name">SmartExtensionAPI</string>
 </resources>

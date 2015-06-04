@@ -3,13 +3,15 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="8px" >
+    android:padding="8px"
+    android:layout_weight="1">
 
     <GridLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_row="1"
-        android:layout_column="2" >
+        android:layout_column="2"
+        android:layout_weight="1">
 
         <LinearLayout
             android:orientation="vertical"

@@ -24,45 +24,26 @@ public class MyControlExtension extends ControlExtension {
      */
     public MyControlExtension(Context context, String hostAppPackageName) {
         super(context, hostAppPackageName);
+        startVibrator(0200,0000,1);
     }
 
     @Override
-    public void setScreenState(final int state) {
-        if (Dbg.DEBUG) {
-            Dbg.d("setScreenState: " + state);
-        }
-        Intent intent = new Intent(Control.Intents.CONTROL_SET_SCREEN_STATE_INTENT);
-        intent.putExtra(Control.Intents.EXTRA_SCREEN_STATE, state);
-        sendToHostApp(intent);
+    protected void setScreenState(final int state) {
+        super.setScreenState(state);
     }
 
     @Override
-    public void sendImage(final int layoutReference, final Bitmap bitmap){
-        if (Dbg.DEBUG) {
-            Dbg.d("sendImage");
-        }
-
-        Intent intent = new Intent(Control.Intents.CONTROL_SEND_IMAGE_INTENT);
-        intent.putExtra(Control.Intents.EXTRA_LAYOUT_REFERENCE, layoutReference);
-        ByteArrayOutputStream os = new ByteArrayOutputStream(256);
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
-        byte[] buffer = os.toByteArray();
-        intent.putExtra(Control.Intents.EXTRA_DATA, buffer);
-        sendToHostApp(intent);
+    protected void sendImage(final int layoutReference, final Bitmap bitmap){
+        super.sendImage(layoutReference, bitmap);
     }
 
     @Override
-    public void showLayout(final int layoutId, final Bundle[] layoutData) {
-        if (Dbg.DEBUG) {
-            Dbg.d("showLayout");
-        }
+    protected void showLayout(final int layoutId, final Bundle[] layoutData) {
+        super.showLayout(layoutId, layoutData);
+    }
 
-        Intent intent = new Intent(Control.Intents.CONTROL_PROCESS_LAYOUT_INTENT);
-        intent.putExtra(Control.Intents.EXTRA_DATA_XML_LAYOUT, layoutId);
-        if (layoutData != null && layoutData.length > 0) {
-            intent.putExtra(Control.Intents.EXTRA_LAYOUT_DATA, layoutData);
-        }
-
-        sendToHostApp(intent);
+    @Override
+    protected void startVibrator(int onDuration, int offDuration, int repeats) {
+        super.startVibrator(onDuration, offDuration, repeats);
     }
 }

@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by cdsteer on 31/05/15.
  */
-public class NewsReadService extends Service{
+public class NewsReadService extends Service {
     final String KEYWORDS = "Swansea";
     final String PRODUCT = "NewsWeb";
     final String CONTENT_FORMAT = "TextualFormat";

@@ -6,6 +6,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.BaseColumns;
@@ -20,6 +21,8 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sonyericsson.extras.liveware.aef.control.Control;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,6 +58,16 @@ public class ViewNews extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_list);
+        MyControlExtension myControlExtension = new MyControlExtension(this.getApplicationContext(),  this.getPackageName());
+        myControlExtension.setScreenState(Control.Intents.SCREEN_STATE_ON); // (to make sure the screen is on)
+        myControlExtension.showLayout(R.layout.control_image, null);
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
+        Bitmap bmp = Bitmap.createBitmap(10, 10, conf); // this creates a MUTABLE bitmap
+        myControlExtension.sendImage(R.id.imageview1, bmp);
+        //myControlExtension.startVibrator(020000,0000,1);
+        myControlExtension.start();
+
+        Log.v("Happiness", "IMAGE SENT!");
         listView = (ListView) findViewById (R.id.news_list);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

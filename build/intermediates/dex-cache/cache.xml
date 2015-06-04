@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/jars/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="712641d1251244706d50c29721bf9d1a143c16d1">
-        <dex dex="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/pre-dexed/debug/classes-565eb7edbc22c41bb086b60275beb9a8354f21f5.jar" />
-    </item>
-    <item
         jar="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionAPI/unspecified/jars/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="bd1a1a08f3df1a8e65bf1cf061c25a713b8fab29">
+        sha1="53135eb742f1e2e89c90b94b683469a30ab5ba61">
         <dex dex="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/pre-dexed/debug/classes-b36c2feaf6a49482850f9d37b819afa9abfb923b.jar" />
+    </item>
+    <item
+        jar="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9726ee388c08786ba432eb2dc20bb6f67ee63a64">
+        <dex dex="/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/pre-dexed/debug/classes-565eb7edbc22c41bb086b60275beb9a8354f21f5.jar" />
     </item>
 
 </items>
