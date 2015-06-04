@@ -150,18 +150,21 @@ containing a value of this type.
         public static final int actions_2=0x7f020001;
         public static final int actions_3=0x7f020002;
         public static final int badge_counter=0x7f020003;
-        public static final int headset_pro_cancel_icn=0x7f020004;
-        public static final int headset_pro_focus_xs_icn=0x7f020005;
-        public static final int headset_pro_ok_icn=0x7f020006;
-        public static final int icn_18x18_black_white_message_notification=0x7f020007;
-        public static final int icn_18x18_message_notification=0x7f020008;
-        public static final int icn_30x30_message_notification=0x7f020009;
-        public static final int icon=0x7f02000a;
-        public static final int icon_extension=0x7f02000b;
-        public static final int icon_extension_48=0x7f02000c;
-        public static final int text_bg=0x7f02000d;
-        public static final int widget_default_userpic_bg=0x7f02000e;
-        public static final int widget_frame=0x7f02000f;
+        public static final int blue_notification=0x7f020004;
+        public static final int green_notification=0x7f020005;
+        public static final int headset_pro_cancel_icn=0x7f020006;
+        public static final int headset_pro_focus_xs_icn=0x7f020007;
+        public static final int headset_pro_ok_icn=0x7f020008;
+        public static final int icn_18x18_black_white_message_notification=0x7f020009;
+        public static final int icn_18x18_message_notification=0x7f02000a;
+        public static final int icn_30x30_message_notification=0x7f02000b;
+        public static final int icon=0x7f02000c;
+        public static final int icon_extension=0x7f02000d;
+        public static final int icon_extension_48=0x7f02000e;
+        public static final int red_notification=0x7f02000f;
+        public static final int text_bg=0x7f020010;
+        public static final int widget_default_userpic_bg=0x7f020011;
+        public static final int widget_frame=0x7f020012;
     }
     public static final class id {
         public static final int am_pm=0x7f090008;

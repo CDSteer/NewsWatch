@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/res/values-zh-rTW/values-zh-rTW.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/res/values-zh-rTW/values-zh-rTW.xml -->
     <eat-comment/>
     <dimen name="headset_pro_text_size">16px</dimen>
     <dimen name="smart_watch_text_size_normal">16px</dimen>

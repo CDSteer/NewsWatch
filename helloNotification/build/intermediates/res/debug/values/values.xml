@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/build/intermediates/exploded-aar/HelloNotification/smartExtensionUtils/unspecified/res/values/values.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/build/intermediates/exploded-aar/NewsWatch/smartExtensionUtils/unspecified/res/values/values.xml -->
     <eat-comment/>
     <color name="smart_watch_2_text_color_grey">#ffe6e6e6</color>
-    <color name="smart_watch_2_text_color_orange">#fff0832d</color>
+    <color name="smart_watch_2_text_color_orange">#ff0079ff</color>
     <color name="smart_watch_2_text_color_white">#ffffffff</color>
     <color name="smart_watch_text_color_grey">#ffe6e6e6</color>
     <color name="smart_watch_text_color_orange">#fff0832d</color>
@@ -37,7 +37,7 @@
     <dimen name="smart_watch_widget_text_background_width">@dimen/smart_watch_widget_width_inner</dimen>
     <dimen name="smart_watch_widget_width_inner">92px</dimen>
     <dimen name="smart_watch_widget_width_outer">128px</dimen>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="ViewNews"/>
     <string name="ViewSavedNews"/>
@@ -66,7 +66,7 @@
     <string name="preference_option_send">Send notifications</string>
     <string name="source_name">Notification source</string>
     <string name="text_to_speech">New notification event from</string>
-    <!-- From: file:/Users/cdsteer/HelloNotification/helloNotification/src/main/res/values/styles.xml -->
+    <!-- From: file:/Users/jonbailey/AndroidStudioProjects/NewsWatch/helloNotification/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ExtensionLightTheme" parent="@android:style/Theme"/>
 </resources>

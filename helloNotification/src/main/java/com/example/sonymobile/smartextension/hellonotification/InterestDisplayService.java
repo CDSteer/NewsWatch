@@ -9,15 +9,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.sonyericsson.extras.liveware.aef.control.Control;
 import com.sonyericsson.extras.liveware.aef.notification.Notification;
-import com.sonyericsson.extras.liveware.aef.registration.Registration;
 import com.sonyericsson.extras.liveware.aef.widget.Widget;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionService;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionUtils;
-import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.notification.NotificationUtil;
 import com.sonyericsson.extras.liveware.extension.util.registration.RegistrationInformation;
 
@@ -134,8 +131,8 @@ public class InterestDisplayService extends ExtensionService {
         eventValues.put(Notification.EventColumns.PROFILE_IMAGE_URI, imageURI);
         eventValues.put(Notification.EventColumns.PUBLISHED_TIME, time);
         eventValues.put(Notification.EventColumns.SOURCE_ID, sourceId);
-
-        eventValues.put(Notification.EventColumns.IMAGE_URI, R.drawable.blueNotification);
+        eventValues.put(Notification.EventColumns.IMAGE_URI, ExtensionUtils.getUriString(this.getApplicationContext(),R.drawable.blue_notification));
+        Log.v("NewImage", "" + R.drawable.blue_notification);
         NotificationUtil.addEvent(this, eventValues);
     }
 }

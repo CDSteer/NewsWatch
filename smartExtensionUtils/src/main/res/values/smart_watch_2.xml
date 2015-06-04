@@ -18,7 +18,7 @@
     <dimen name="smart_watch_2_text_size_small">13px</dimen>
 
     <color name="smart_watch_2_text_color_grey">#ffe6e6e6</color>
-    <color name="smart_watch_2_text_color_orange">#fff0832d</color>
+    <color name="smart_watch_2_text_color_orange">#ff0079ff</color>
     <color name="smart_watch_2_text_color_white">#ffffffff</color>
 
 </resources>
